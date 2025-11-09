@@ -7,16 +7,16 @@ import (
 	"io"
 	"os"
 
-	yup "github.com/gloo-foo/framework"
+	gloo "github.com/gloo-foo/framework"
 )
 
-type command yup.Inputs[string, flags]
+type command gloo.Inputs[string, flags]
 
-func Tee(parameters ...any) yup.Command {
-	return command(yup.Initialize[string, flags](parameters...))
+func Tee(parameters ...any) gloo.Command {
+	return command(gloo.Initialize[string, flags](parameters...))
 }
 
-func (p command) Executor() yup.CommandExecutor {
+func (p command) Executor() gloo.CommandExecutor {
 	return func(ctx context.Context, stdin io.Reader, stdout, stderr io.Writer) error {
 		// Open all output files
 		var files []*os.File
